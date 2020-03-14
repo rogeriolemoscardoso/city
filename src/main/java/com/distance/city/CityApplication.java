@@ -1,4 +1,4 @@
-package com.city.city;
+package com.distance.city;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
