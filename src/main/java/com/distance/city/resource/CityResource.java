@@ -3,13 +3,10 @@ package com.distance.city.resource;
 import com.distance.city.dto.CityDTO;
 import com.distance.city.jdbc.domain.City;
 import com.distance.city.sevice.CityService;
-import com.distance.city.sevice.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,12 +23,7 @@ public class CityResource {
 
     @GetMapping
     public ResponseEntity<List<City>> findAll () {
-        List<City> cities;
-        try {
-           cities = cityService.findAll();
-        } catch (ObjectNotFoundException objectNotFoundException) {
-           throw new ObjectNotFoundException("Não existe cidade cadastrada", objectNotFoundException);
-        }
+        List<City> cities = cityService.findAll();
         return ResponseEntity.ok().body(cities);
     }
 

@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.distance.city.util.Constants.*;
 
 @Component
@@ -29,9 +28,7 @@ public class CityDAO {
             pst.setString(1,city.getName());
             pst.setDouble(2,city.getLatitude());
             pst.setDouble(3,city.getLongitude());
-
             pst.execute();
-
         } catch (SQLException e){
             throw new RuntimeException(e);
         }
@@ -41,11 +38,8 @@ public class CityDAO {
         String sql = SELECT_CITIES;
         ArrayList<City> cities = new ArrayList<>();
 
-
-        try {
-            PreparedStatement pst = connection.prepareStatement(sql);
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
             ResultSet rs = pst.executeQuery();
-
             while(rs.next()) {
                 City city = new City();
                 city.setId(rs.getInt("id"));
@@ -54,8 +48,7 @@ public class CityDAO {
                 city.setLongitude(rs.getFloat("longitude"));
                 cities.add(city);
             }
-
-            pst.close();
+           pst.close();
             return cities;
         } catch (SQLException e) {
             throw new RuntimeException(e);

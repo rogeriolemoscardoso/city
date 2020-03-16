@@ -10,11 +10,11 @@ import static com.distance.city.util.Constants.*;
 
 @Component
 public class ConnectionFactory {
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
         try {
             return DriverManager.getConnection(URL, USER,PASSWORD);
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            throw new SQLException(ex);
         }
     }
 }
