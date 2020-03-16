@@ -3,15 +3,11 @@ package com.distance.city;
 import com.distance.city.dao.CityDAO;
 import com.distance.city.dto.CityDTO;
 import com.distance.city.jdbc.domain.City;
-import com.distance.city.sevice.exceptions.ObjectNotFoundException;
 import com.distance.city.sevice.impl.CityServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -76,6 +72,6 @@ class CityApplicationTests {
 	@Test
 	public void testcalculateDistanceCitiesException () {
 		cityServiceImp = new CityServiceImpl(cityDao);
-		Assertions.assertThrows(ObjectNotFoundException.class, () -> cityServiceImp.calculateDistanceCities("KM"));
+		Assertions.assertThrows(IllegalArgumentException.class, () -> cityServiceImp.calculateDistanceCities("KM"));
 	}
 }
