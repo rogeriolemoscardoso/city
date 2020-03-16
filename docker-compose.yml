@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  bd:
+    image: mysql:latest
+    container_name: bd
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=city
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306
+  city-distance:
+    image: rogeriolemosc/city-distance
+    container_name: city-distance
+    environment:
+      - DATABASE_HOST=bd
+      - DATABASE_USER=root
+      - DATABASE_NAME=city
+      - DATABASE_PASSWORD=root
+      - DATABASE_PORT=3306
+    depends_on:
+      - bd
+    ports:
+      - 8080:8080
