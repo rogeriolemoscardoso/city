@@ -33,4 +33,10 @@ public class CityResource {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> deleteCity (@PathVariable Integer id) {
+        cityService.deleteCity(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
