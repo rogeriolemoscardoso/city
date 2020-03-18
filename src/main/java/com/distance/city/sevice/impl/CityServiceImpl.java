@@ -37,6 +37,14 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public void deleteCity (Integer id) {
+        if ( id == null ) {
+            throw new ObjectNotFoundException("Nenhuma cidade encontrada");
+        }
+        cityDAO.deleteById(id);
+    }
+
+    @Override
     public List<CityDTO> calculateDistanceCities (String measures) {
         List<City> citiesSource = findAll();
         List<CityDTO> cities = new ArrayList<>();

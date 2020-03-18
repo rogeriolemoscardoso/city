@@ -54,4 +54,15 @@ public class CityDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void deleteById(Integer id) {
+        String sql = DELETE_CITIES;
+
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setLong(1,id);
+            pst.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

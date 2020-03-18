@@ -2,14 +2,15 @@ version: '3.7'
 services:
   bd:
     image: mysql:latest
+    restart: always
     container_name: bd
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=city
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
     ports:
       - 3306
+    volumes :
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
   city-distance:
     image: rogeriolemosc/city-distance
     container_name: city-distance

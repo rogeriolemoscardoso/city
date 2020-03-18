@@ -12,4 +12,6 @@ public interface CityService {
     List<City> findAll();
 
     List<CityDTO> calculateDistanceCities (String measures);
+
+    void deleteCity(Integer id);
 }
